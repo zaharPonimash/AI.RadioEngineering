@@ -12,6 +12,8 @@ using AI.MathMod;
 using AI.MathMod.AdditionalFunctions;
 using AI.MathMod.Signals;
 using AI.MathMod.Graphiks;
+using AI.MathMod.ML.Regression;
+
 
 namespace AI.RadioEngineering
 {
@@ -24,6 +26,10 @@ namespace AI.RadioEngineering
 		/// Частота дискретизации
 		/// </summary>
 		public double Fd{get; set;}
+		
+		Furie fur;
+		
+		int _n;
 		
 		/// <summary>
 		/// Шаг по времени
@@ -51,6 +57,8 @@ namespace AI.RadioEngineering
 		{
 			Fd = fd;
 			Channels = channels;
+			fur = new Furie(channels[0].N);
+			_n = fur._n;
 		}
 		
 		
@@ -63,6 +71,152 @@ namespace AI.RadioEngineering
 		{
 			Fd = fd;
 			Channels = new Vector[]{signal};
+			fur = new Furie(signal.N);
+			_n = fur._n;
+		}
+		
+		
+		
+		
+		
+		/// <summary>
+		/// Тренды сигнала
+		/// </summary>
+		public Signal1D Trends()
+		{
+			Vector[] vcs = new Vector[Channels.Length];
+			Vector time = Time();
+			LinearRegression lr;
+			
+			for (int i = 0; i < vcs.Length; i++)
+			{
+				lr = new LinearRegression(time, Channels[i]);
+				vcs[i] = lr.Predict(time);
+			}
+			
+			
+			return new Signal1D(vcs, Fd);
+		}
+		
+		
+		/// <summary>
+		/// Сигнал без тренда
+		/// </summary>
+		public Signal1D SignalWithoutTrend()
+		{
+			Signal1D trends = Trends();
+			Vector[] vcs = new Vector[Channels.Length];
+			
+			for (int i = 0; i < Channels.Length; i++)
+			{
+				vcs[i] = Channels[i] - trends.Channels[i];
+			}
+			
+			return new Signal1D(vcs, Fd);
+		}
+		
+		/// <summary>
+		/// Сигнал нулевым мат. ожиданием и средне квадратичным отклонением равным 1 (вычитается тренд)
+		/// </summary>
+		public Signal1D SignalWithM0Std1Trend()
+		{
+			Signal1D withOutTrends = SignalWithoutTrend();
+			Vector[] vcs = new Vector[Channels.Length];
+			
+			for (int i = 0; i < Channels.Length; i++)
+			{
+				vcs[i] = withOutTrends.Channels[i] / Statistic.Sco(withOutTrends.Channels[i]);
+			}
+			
+			return new Signal1D(vcs, Fd);
+		}
+		
+		
+		/// <summary>
+		/// Сигнал нулевым мат. ожиданием и средне квадратичным отклонением равным 1 (вычитается среднее)
+		/// </summary>
+		public Signal1D SignalWithM0Std1()
+		{
+			Vector[] vcs = new Vector[Channels.Length];
+			
+			for (int i = 0; i < Channels.Length; i++)
+			{
+				vcs[i] = Channels[i]-Statistic.ExpectedValue(Channels[i]); 
+				vcs[i] /= Statistic.Sco(vcs[i]);
+			}
+			
+			return new Signal1D(vcs, Fd);
+		}
+		
+		
+		/// <summary>
+		/// Рассчитывает спектр
+		/// </summary>
+		/// <param name="numCh">Номер канала</param>
+		/// <returns>Амплитудный спектр частоты 0 ... fd/2</returns>
+		public Vector GetSpectr(int numCh = 0)
+		{
+			ComplexVector cv = fur.FFT(Channels[numCh]);
+			Vector sp = cv.MagnitudeToVector()/_n;
+			sp *= 2;
+			sp = sp.CutAndZero(_n/2);
+			return sp;
+		}
+		
+		
+		/// <summary>
+		/// Рассчитывает спектр по всем каналам
+		/// </summary>
+		/// <returns>Спектры</returns>
+		public Vector[] GetSpectrAll()
+		{
+			Vector[] vcs = new Vector[Channels.Length];
+			
+			for (int i = 0; i < Channels.Length; i++) 
+			{
+				vcs[i] = GetSpectr(i);
+			}
+			
+			return vcs;
+		}
+		
+		/// <summary>
+		/// Корреляционная матрица по каналам
+		/// </summary>
+		/// <returns>Матрица</returns>
+		public Matrix CorrelationMatrix()
+		{
+			return Matrix.CorrelationMatrixNorm(Channels);
+		}
+		
+		
+		
+		/// <summary>
+		/// Корреляционная матрица амплитудных спектров
+		/// </summary>
+		/// <returns>Матрица</returns>
+		public Matrix CorrelationMatrixSpectr()
+		{
+			return Matrix.CorrelationMatrixNorm(GetSpectrAll());
+		}
+		
+		
+		/// <summary>
+		/// Коэффициент связи между каналами рассчитывается как, единица минус определитель корреляционной матрицы
+		/// </summary>
+		/// <returns>Коэфициент связи [1,0] близко к 1 связь сильная, к 0 слабая</returns>
+		public double CouplingCoefficient()
+		{
+			return 1 - CorrelationMatrix().Determinant();
+		}
+		
+		/// <summary>
+		/// Коэффициент связи между сперктрами каналов рассчитывается как, единица минус определитель корреляционной матрицы амплитудных спектров
+		/// </summary>
+		/// <returns>Коэфициент связи [1,0] близко к 1 связь сильная, к 0 слабая</returns>
+		public double CouplingCoefficientSp()
+		{
+			return 1 - CorrelationMatrixSpectr().Determinant();
 		}
 		
 		
@@ -76,28 +230,46 @@ namespace AI.RadioEngineering
 			return MathFunc.GenerateTheSequence(0, Dt, endT).CutAndZero(Channels[0].N);
 		}
 		
+		
 		/// <summary>
 		/// Генерация отсчетов частоты
 		/// </summary>
 		/// <returns>Отсчеты частоты</returns>
 		public Vector Freq()
 		{
-			return Signal.Frequency(Channels[0].N, Fd).CutAndZero(Channels[0].N);
+			return Signal.Frequency(_n, Fd).CutAndZero(_n/2);
 		}
 		
 		
-		
 		/// <summary>
-		/// Визуализация
+		/// Визуализация сигнала
 		/// </summary>
-		public void Visual()
+		public void VisualSignal()
 		{
-			Descrintion desc = new Descrintion("Время [c]", "s(t) [В]", "Сигнал");
+			Descrintion desc;
 			Vector t = Time();
 			
 			for(int i = 0; i < Channels.Length; i++)
 			{
+				desc = new Descrintion("Время [c]", "s(t) [В]", "Сигнал [Канал №"+(i+1)+"]");
 				Channels[i].Visual(t, desc);
+			}
+			
+		}
+		
+		
+		/// <summary>
+		/// Визуализация спектра
+		/// </summary>
+		public void VisualAmplSpectr()
+		{
+			Descrintion desc;
+			Vector f = Freq();
+			
+			for(int i = 0; i < Channels.Length; i++)
+			{
+				desc = new Descrintion("Частота [Гц]", "S(f) [В/Гц]", "Cпектр [Канал №"+(i+1)+"]");
+				GetSpectr(i).Visual(f, desc);
 			}
 			
 		}

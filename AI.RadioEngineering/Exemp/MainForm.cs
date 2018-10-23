@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using AI.MathMod;
 using AI.RadioEngineering;
 using AI.MathMod.Signals;
+using System.Threading;
 
 namespace Exemp
 {
@@ -26,12 +27,28 @@ namespace Exemp
 			
 			InitializeComponent();
 			
-			Vector vect = Signal.LFM(1400, 0, 100000, 0.005);
+			double t = 0.002, fd = 4e+4;
+			Random rnd = new Random(10);
 			
-			Signal1D sig = new Signal1D(vect, 100000);
+			int n = 640;
+			Vector[] ch = new Vector[n];
+
+			for (int i = 0; i < n; i++) 
+			{
+				ch[i] = Signal.LFM(1000, 7*(i+1), fd, t);
+			}
 			
-			sig.Visual();
 			
+			
+			var sig = new Signal1D( ch, fd);
+			
+			//MessageBox.Show("Коэф. связи каналов: "+ sig.CouplingCoefficient());
+			
+			//MessageBox.Show("Коэф. связи амплитудных спектров: "+ sig.CouplingCoefficientSp());
+			
+			sig.CorrelationMatrix().MatrixShow();
+			
+			//sig.SignalWithM0Std1().VisualSignal();
 		}
 		
 		

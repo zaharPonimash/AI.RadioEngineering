@@ -23,6 +23,63 @@
             <param name="signal">Сигнал</param>
             <param name="fd">Частота дискретизации</param>
         </member>
+        <member name="M:AI.RadioEngineering.Signal1D.Trends">
+            <summary>
+            Тренды сигнала
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.SignalWithoutTrend">
+            <summary>
+            Сигнал без тренда
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.SignalWithM0Std1Trend">
+            <summary>
+            Сигнал нулевым мат. ожиданием и средне квадратичным отклонением равным 1 (вычитается тренд)
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.SignalWithM0Std1">
+            <summary>
+            Сигнал нулевым мат. ожиданием и средне квадратичным отклонением равным 1 (вычитается среднее)
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.GetSpectr(System.Int32)">
+            <summary>
+            Рассчитывает спектр
+            </summary>
+            <param name="numCh">Номер канала</param>
+            <returns>Амплитудный спектр частоты 0 ... fd/2</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.GetSpectrAll">
+            <summary>
+            Рассчитывает спектр по всем каналам
+            </summary>
+            <returns>Спектры</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.CorrelationMatrix">
+            <summary>
+            Корреляционная матрица по каналам
+            </summary>
+            <returns>Матрица</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.CorrelationMatrixSpectr">
+            <summary>
+            Корреляционная матрица амплитудных спектров
+            </summary>
+            <returns>Матрица</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.CouplingCoefficient">
+            <summary>
+            Коэффициент связи между каналами рассчитывается как, единица минус определитель корреляционной матрицы
+            </summary>
+            <returns>Коэфициент связи [1,0] близко к 1 связь сильная, к 0 слабая</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.CouplingCoefficientSp">
+            <summary>
+            Коэффициент связи между сперктрами каналов рассчитывается как, единица минус определитель корреляционной матрицы амплитудных спектров
+            </summary>
+            <returns>Коэфициент связи [1,0] близко к 1 связь сильная, к 0 слабая</returns>
+        </member>
         <member name="M:AI.RadioEngineering.Signal1D.Time">
             <summary>
             Генерация отсчетов времени
@@ -35,9 +92,14 @@
             </summary>
             <returns>Отсчеты частоты</returns>
         </member>
-        <member name="M:AI.RadioEngineering.Signal1D.Visual">
+        <member name="M:AI.RadioEngineering.Signal1D.VisualSignal">
             <summary>
-            Визуализация
+            Визуализация сигнала
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.VisualAmplSpectr">
+            <summary>
+            Визуализация спектра
             </summary>
         </member>
         <member name="P:AI.RadioEngineering.Signal1D.Fd">
