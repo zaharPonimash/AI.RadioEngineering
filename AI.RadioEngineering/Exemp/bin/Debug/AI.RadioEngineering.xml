@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AI.RadioEngineering</name>
+    </assembly>
+    <members>
+        <member name="T:AI.RadioEngineering.Signal1D">
+            <summary>
+            Основной класс для одномерного сигнала
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.#ctor(AI.MathMod.Vector[],System.Double)">
+            <summary>
+            Инициализация многоканальным сигналом
+            </summary>
+            <param name="channels">Сигнал</param>
+            <param name="fd">Частота дискретизации</param>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.#ctor(AI.MathMod.Vector,System.Double)">
+            <summary>
+            Инициализация многоканальным сигналом
+            </summary>
+            <param name="signal">Сигнал</param>
+            <param name="fd">Частота дискретизации</param>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.Time">
+            <summary>
+            Генерация отсчетов времени
+            </summary>
+            <returns>Отсчеты времени</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.Freq">
+            <summary>
+            Генерация отсчетов частоты
+            </summary>
+            <returns>Отсчеты частоты</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.Visual">
+            <summary>
+            Визуализация
+            </summary>
+        </member>
+        <member name="P:AI.RadioEngineering.Signal1D.Fd">
+            <summary>
+            Частота дискретизации
+            </summary>
+        </member>
+        <member name="P:AI.RadioEngineering.Signal1D.Dt">
+            <summary>
+            Шаг по времени
+            </summary>
+        </member>
+        <member name="P:AI.RadioEngineering.Signal1D.Channels">
+            <summary>
+            Каналы сигнала
+            </summary>
+        </member>
+    </members>
+</doc>
