@@ -23,6 +23,31 @@
             <param name="signal">Сигнал</param>
             <param name="fd">Частота дискретизации</param>
         </member>
+        <member name="M:AI.RadioEngineering.Signal1D.GetSpectr(System.Int32)">
+            <summary>
+            Рассчитывает спектр
+            </summary>
+            <param name="numCh">Номер канала</param>
+            <returns>Амплитудный спектр частоты 0 ... fd/2</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.GetSpectrAll">
+            <summary>
+            Рассчитывает спектр по всем каналам
+            </summary>
+            <returns>Спектры</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.CorrelationMatrix">
+            <summary>
+            Корреляционная матрица по каналам
+            </summary>
+            <returns>Матрица</returns>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.CorrelationMatrixSpectr">
+            <summary>
+            Корреляционная матрица амплитудных спектров
+            </summary>
+            <returns>Матрица</returns>
+        </member>
         <member name="M:AI.RadioEngineering.Signal1D.Time">
             <summary>
             Генерация отсчетов времени
@@ -35,9 +60,14 @@
             </summary>
             <returns>Отсчеты частоты</returns>
         </member>
-        <member name="M:AI.RadioEngineering.Signal1D.Visual">
+        <member name="M:AI.RadioEngineering.Signal1D.VisualSignal">
             <summary>
-            Визуализация
+            Визуализация сигнала
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.Signal1D.VisualAmplSpectr">
+            <summary>
+            Визуализация спектра
             </summary>
         </member>
         <member name="P:AI.RadioEngineering.Signal1D.Fd">

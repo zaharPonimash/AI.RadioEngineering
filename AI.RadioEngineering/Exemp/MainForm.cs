@@ -26,12 +26,26 @@ namespace Exemp
 			
 			InitializeComponent();
 			
-			Vector vect = Signal.LFM(1400, 0, 100000, 0.005);
+			double t = 0.1, fd = 4e+4;
 			
-			Signal1D sig = new Signal1D(vect, 100000);
+			Signal1D sig = new Signal1D
+			(
+				new Vector[]
+				{
+					Signal.LFM(9700, 0,     fd, t),
+					Signal.LFM(700,  0,     fd, t),
+					Signal.LFM(700,  800,   fd, t),
+					Signal.LFM(700,  1800,  fd, t),
+					Signal.LFM(1700, 800,   fd, t),
+					Signal.LFM(600,  5800,  fd, t),
+					Signal.LFM(1700, 8000,  fd, t)
+				}
+				, fd
+			);
 			
-			sig.Visual();
-			
+			//sig.VisualAmplSpectr();
+			sig.CorrelationMatrixSpectr().MatrixShow();
+			//sig.CorrelationMatrix().MatrixShow();
 		}
 		
 		
