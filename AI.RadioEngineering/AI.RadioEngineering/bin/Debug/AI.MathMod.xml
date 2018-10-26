@@ -409,6 +409,11 @@
             <param name="valueShift"> На сколько сдвинуть</param>
             <returns>возвращает вектор длинны N+valueShift</returns>
         </member>
+        <member name="M:AI.MathMod.ComplexVector.FurCentr">
+            <summary>
+            Центровка массива значений полученных при преобразовании Фурье
+            </summary>
+        </member>
         <member name="M:AI.MathMod.ComplexVector.ImgToVector">
             <summary>
             Возвращает вектор мнимой части комплексного вектора
@@ -3642,6 +3647,14 @@
         <member name="M:AI.MathMod.Signals.Signal.Frequency(System.Int32,System.Double)">
             <summary>
             Массив частот
+            </summary>
+            <param name="N">Кол-во значений</param>
+            <param name="fd">Частота дискретизации</param>
+            <returns>Вектор частот</returns>
+        </member>
+        <member name="M:AI.MathMod.Signals.Signal.FrequencyCentr(System.Int32,System.Double)">
+            <summary>
+            Центрированный массив частот 
             </summary>
             <param name="N">Кол-во значений</param>
             <param name="fd">Частота дискретизации</param>
