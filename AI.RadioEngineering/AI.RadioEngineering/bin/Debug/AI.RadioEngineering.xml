@@ -23,6 +23,7 @@
             <param name="signal">Сигнал</param>
             <param name="fd">Частота дискретизации</param>
         </member>
+<<<<<<< HEAD
         <member name="M:AI.RadioEngineering.Signal1D.Trends">
             <summary>
             Тренды сигнала
@@ -43,6 +44,8 @@
             Сигнал нулевым мат. ожиданием и средне квадратичным отклонением равным 1 (вычитается среднее)
             </summary>
         </member>
+=======
+>>>>>>> 8fd3ce21b3a89aeee692de1a24fe9301e642d677
         <member name="M:AI.RadioEngineering.Signal1D.GetSpectr(System.Int32)">
             <summary>
             Рассчитывает спектр
@@ -68,6 +71,7 @@
             </summary>
             <returns>Матрица</returns>
         </member>
+<<<<<<< HEAD
         <member name="M:AI.RadioEngineering.Signal1D.CouplingCoefficient">
             <summary>
             Коэффициент связи между каналами рассчитывается как, единица минус определитель корреляционной матрицы
@@ -80,6 +84,8 @@
             </summary>
             <returns>Коэфициент связи [1,0] близко к 1 связь сильная, к 0 слабая</returns>
         </member>
+=======
+>>>>>>> 8fd3ce21b3a89aeee692de1a24fe9301e642d677
         <member name="M:AI.RadioEngineering.Signal1D.Time">
             <summary>
             Генерация отсчетов времени

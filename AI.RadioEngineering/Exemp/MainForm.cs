@@ -27,6 +27,7 @@ namespace Exemp
 			
 			InitializeComponent();
 			
+<<<<<<< HEAD
 			double t = 0.002, fd = 4e+4;
 			Random rnd = new Random(10);
 			
@@ -49,6 +50,28 @@ namespace Exemp
 			sig.CorrelationMatrix().MatrixShow();
 			
 			//sig.SignalWithM0Std1().VisualSignal();
+=======
+			double t = 0.1, fd = 4e+4;
+			
+			Signal1D sig = new Signal1D
+			(
+				new Vector[]
+				{
+					Signal.LFM(9700, 0,     fd, t),
+					Signal.LFM(700,  0,     fd, t),
+					Signal.LFM(700,  800,   fd, t),
+					Signal.LFM(700,  1800,  fd, t),
+					Signal.LFM(1700, 800,   fd, t),
+					Signal.LFM(600,  5800,  fd, t),
+					Signal.LFM(1700, 8000,  fd, t)
+				}
+				, fd
+			);
+			
+			//sig.VisualAmplSpectr();
+			sig.CorrelationMatrixSpectr().MatrixShow();
+			//sig.CorrelationMatrix().MatrixShow();
+>>>>>>> 8fd3ce21b3a89aeee692de1a24fe9301e642d677
 		}
 		
 		

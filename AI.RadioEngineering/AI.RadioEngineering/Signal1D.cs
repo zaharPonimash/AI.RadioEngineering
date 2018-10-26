@@ -75,6 +75,7 @@ namespace AI.RadioEngineering
 			_n = fur._n;
 		}
 		
+<<<<<<< HEAD
 		
 		
 		
@@ -149,6 +150,8 @@ namespace AI.RadioEngineering
 		}
 		
 		
+=======
+>>>>>>> 8fd3ce21b3a89aeee692de1a24fe9301e642d677
 		/// <summary>
 		/// Рассчитывает спектр
 		/// </summary>
@@ -190,7 +193,10 @@ namespace AI.RadioEngineering
 		}
 		
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 8fd3ce21b3a89aeee692de1a24fe9301e642d677
 		/// <summary>
 		/// Корреляционная матрица амплитудных спектров
 		/// </summary>
@@ -198,6 +204,7 @@ namespace AI.RadioEngineering
 		public Matrix CorrelationMatrixSpectr()
 		{
 			return Matrix.CorrelationMatrixNorm(GetSpectrAll());
+<<<<<<< HEAD
 		}
 		
 		
@@ -217,6 +224,8 @@ namespace AI.RadioEngineering
 		public double CouplingCoefficientSp()
 		{
 			return 1 - CorrelationMatrixSpectr().Determinant();
+=======
+>>>>>>> 8fd3ce21b3a89aeee692de1a24fe9301e642d677
 		}
 		
 		
