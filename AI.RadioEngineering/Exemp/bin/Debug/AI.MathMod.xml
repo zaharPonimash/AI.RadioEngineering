@@ -1775,6 +1775,29 @@
             not be able to load this method if it was changed manually.
             </summary>
         </member>
+        <member name="T:AI.MathMod.Graphiks.VisualData">
+            <summary>
+            Description of VisualData.
+            </summary>
+        </member>
+        <member name="F:AI.MathMod.Graphiks.VisualData.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:AI.MathMod.Graphiks.VisualData.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AI.MathMod.Graphiks.VisualData.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
         <member name="T:AI.MathMod.Graphiks.VisualPlot">
             <summary>
             Description of VisualPlot.
@@ -1833,6 +1856,16 @@
             Информационный блок, основной тип данных МАС
             </summary>
         </member>
+        <member name="F:AI.MathMod.InformationBlock.namedVar">
+            <summary>
+            Именованные переменные
+            </summary>
+        </member>
+        <member name="F:AI.MathMod.InformationBlock.mainVar">
+            <summary>
+            Основная переменная
+            </summary>
+        </member>
         <member name="P:AI.MathMod.InformationBlock.TextInform">
             <summary>
             Текстовая информация
@@ -1856,6 +1889,11 @@
         <member name="P:AI.MathMod.InformationBlock.TensorInform">
             <summary>
             Информация в тензорном виде
+            </summary>
+        </member>
+        <member name="P:AI.MathMod.InformationBlock.Flag">
+            <summary>
+            Найден ли ответ
             </summary>
         </member>
         <member name="T:AI.MathMod.Matrix">
@@ -2055,6 +2093,20 @@
             <param name="functions">Порождающая функция</param>
             <param name="values">Значения</param>
             <returns>Возвращает альтернативную матрицу</returns>
+        </member>
+        <member name="M:AI.MathMod.Matrix.Determinant">
+            <summary>
+            Рассчет определителя матрицы
+            </summary>
+            <returns>Определитель</returns>
+        </member>
+        <member name="M:AI.MathMod.Matrix.GetVector(System.Int32,System.Int32)">
+            <summary>
+            Возвращает вектор с нужного среза, нужный индекс
+            </summary>
+            <param name="index">Индеск</param>
+            <param name="dimension">Срез/размерность</param>
+            <returns>Вектор</returns>
         </member>
         <member name="M:AI.MathMod.Matrix.Swap(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -2559,6 +2611,11 @@
             </summary>
             <param name="path">Путь</param>
         </member>
+        <member name="T:AI.MathMod.ML.Classifire.LogisticRegression">
+            <summary>
+            Description of LogisticRegression.
+            </summary>
+        </member>
         <member name="T:AI.MathMod.ML.Classifire.SModel">
             <summary>
             Модель класса
@@ -2813,6 +2870,35 @@
             </summary>
             <param name="path">Путь до датасета</param>
         </member>
+        <member name="M:AI.MathMod.ML.Datasets.VectorIntDataset.DataVisual(System.Int32)">
+            <summary>
+            Данные для визуализации
+            </summary>
+            <param name="n">Число классов</param>
+            <returns></returns>
+        </member>
+        <member name="M:AI.MathMod.ML.Datasets.VectorIntDataset.Visualis">
+            <summary>
+            Визуализация датасета
+            </summary>
+        </member>
+        <member name="M:AI.MathMod.ML.Datasets.VectorIntDataset.CorrMatrFeatures">
+            <summary>
+            Корреляционная матрица признаков
+            </summary>
+            <returns>Нормированная кор. матрица</returns>
+        </member>
+        <member name="M:AI.MathMod.ML.Datasets.VectorIntDataset.DispMeanResult">
+            <summary>
+            Получение вектора дисперсии и среднего вектора
+            </summary>
+        </member>
+        <member name="M:AI.MathMod.ML.Datasets.VectorIntDataset.Normalise">
+            <summary>
+            Нормализация датасета
+            </summary>
+            <returns>Датасет</returns>
+        </member>
         <member name="T:AI.MathMod.ML.GradientDecentDataset">
             <summary>
             Класс для хранения обучающей выборки для градиентного спуска
@@ -3027,6 +3113,13 @@
             <param name="vidTest">Датасет</param>
             <returns>Вероятность верного ответа</returns>
         </member>
+        <member name="M:AI.MathMod.ML.NeuronNetwork.MenegerNNW.TestStr(AI.MathMod.ML.Datasets.VectorIntDataset,System.Int32)">
+            <summary>
+            Тестирование
+            </summary>
+            <param name="vidTest">Датасет</param>
+            <returns>Вероятность верного ответа</returns>
+        </member>
         <member name="M:AI.MathMod.ML.NeuronNetwork.MenegerNNW.Output(AI.MathMod.Vector)">
             <summary>
             Выход сети
@@ -3134,6 +3227,11 @@
         <member name="T:AI.MathMod.ML.PCA">
             <summary>
             Description of PCA.
+            </summary>
+        </member>
+        <member name="T:AI.MathMod.ML.Regression.CosRegression">
+            <summary>
+            Description of PolynomialRegression.
             </summary>
         </member>
         <member name="T:AI.MathMod.ML.Regression.ExpMean">
@@ -3348,6 +3446,11 @@
         <member name="P:AI.MathMod.ML.Simplex.Cost">
             <summary>
             Выигрыш от стратегии
+            </summary>
+        </member>
+        <member name="T:AI.MathMod.NonLinearDynamic.PhasePortrait">
+            <summary>
+            Description of PhasePortrait.
             </summary>
         </member>
         <member name="T:AI.MathMod.Signals.DCT">
@@ -4080,6 +4183,14 @@
             <param name="m">Количество строк</param>
             <param name="n">Количество столбцов</param>
         </member>
+        <member name="M:AI.MathMod.Statistic.randNorm(System.Int32,System.Int32,System.Random)">
+            <summary>
+            Cоздает матрицу с нормально распределенными значениями
+            размерности m на n
+            </summary>
+            <param name="m">Количество строк</param>
+            <param name="n">Количество столбцов</param>
+        </member>
         <member name="M:AI.MathMod.Statistic.randNorm(System.Int16)">
             <summary>
             Cоздает матрицу с нормально распределенными значениями
@@ -4184,6 +4295,29 @@
             </summary>
             <param name="ens">Ансамбль векторов</param>
             <returns>Вектор с максимальной энергией</returns>
+        </member>
+        <member name="M:AI.MathMod.Statistic.SimpleMeanFreq(AI.MathMod.Vector,System.Double)">
+            <summary>
+            Средняя частота (не нормированная, зависит от кол-ва точек)
+            </summary>
+            <param name="signal">Сигнал</param>
+            <returns></returns>
+        </member>
+        <member name="M:AI.MathMod.Statistic.MeanFreq(AI.MathMod.Vector,System.Double,System.Double)">
+            <summary>
+            Средняя частота сигнала
+            </summary>
+            <param name="signal">Сигнал</param>
+            <param name="fd">Частота дискретизации</param>
+            <returns>Средняя частота [Гц]</returns>
+        </member>
+        <member name="M:AI.MathMod.Statistic.DivFreq(AI.MathMod.Vector)">
+            <summary>
+            Изменение частоты
+            </summary>
+            <param name="signal">Сигнал</param>
+            <param name="fd">Частота дискретизации</param>
+            <returns>Дивиация средней частоты</returns>
         </member>
         <member name="P:AI.MathMod.Statistic.SCO">
             <summary>
@@ -4660,6 +4794,11 @@
             <param name="kInterp">коэффициент интерполяции</param>
             <returns></returns>
         </member>
+        <member name="M:AI.MathMod.Vector.AddOne">
+            <summary>
+            Добавляет 1 в начало
+            </summary>
+        </member>
         <member name="M:AI.MathMod.Vector.Is0">
             <summary>
             Проверяет все ли элементы вектора нулевые
@@ -4734,6 +4873,14 @@
             <param name="vectors">Вектора</param>
             <returns></returns>
         </member>
+        <member name="M:AI.MathMod.Vector.GetWindows(AI.MathMod.Vector,System.Int32,System.Int32)">
+            <summary>
+            Разбивка на окна
+            </summary>
+            <param name="inp">Вход</param>
+            <param name="w">Длинна окна</param>
+            <param name="step">шаг</param>
+        </member>
         <member name="M:AI.MathMod.Vector.Mean(AI.MathMod.Vector[])">
             <summary>
             Усреднение по ансамблю
@@ -4748,6 +4895,19 @@
             <param name="pathToWavFile">Путь до файла</param>
             <param name="fd">Возвращаемый параметр, частота дискретизации</param>
             <returns>Вектор</returns>
+        </member>
+        <member name="M:AI.MathMod.Vector.LoadAsBinary(System.String)">
+            <summary>
+            Загрузка вектора из массива double
+            </summary>
+            <param name="path">Путь</param>
+        </member>
+        <member name="M:AI.MathMod.Vector.SaveAsBinary(System.String,AI.MathMod.Vector)">
+            <summary>
+            Сохранение в массив double
+            </summary>
+            <param name="path">Путь до файла</param>
+            <param name="vect">Вектор</param>
         </member>
         <member name="P:AI.MathMod.Vector.Vecktor">
             <summary>

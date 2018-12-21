@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modulation.cs" />
     <Compile Include="Signal1D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

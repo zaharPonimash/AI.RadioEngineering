@@ -4,6 +4,18 @@
         <name>AI.RadioEngineering</name>
     </assembly>
     <members>
+        <member name="T:AI.RadioEngineering.OFDM">
+            <summary>
+            Description of Modulation.
+            </summary>
+        </member>
+        <member name="M:AI.RadioEngineering.OFDM.BuldOfdmSig(AI.MathMod.Vector[])">
+            <summary>
+            Сборка сигнала для передач
+            </summary>
+            <param name="signals"></param>
+            <returns></returns>
+        </member>
         <member name="T:AI.RadioEngineering.Signal1D">
             <summary>
             Основной класс для одномерного сигнала

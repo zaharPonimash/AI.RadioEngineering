@@ -27,26 +27,32 @@ namespace Exemp
 			
 			InitializeComponent();
 			
-			double t = 0.002, fd = 4e+4;
-			Random rnd = new Random(10);
+			OFDM ofdm = new OFDM(3, 200);
 			
-			int n = 640;
-			Vector[] ch = new Vector[n];
-
-			for (int i = 0; i < n; i++) 
+			int N = 100;
+			
+			Vector vect = new Vector(N);
+			Random rnd = new Random();
+			
+			for (int i = 0; i < N; i++)
 			{
-				ch[i] = Signal.LFM(1000, 7*(i+1), fd, t);
+				vect[i] = rnd.NextDouble()>0.5? 1: 0;
 			}
 			
+			vect.Visual();
+			
+			Vector[] s = ofdm.Seq2Parallel(vect);
+			s = ofdm.Par2SigPar(s);
 			
 			
-			var sig = new Signal1D( ch, fd);
 			
-			//MessageBox.Show("Коэф. связи каналов: "+ sig.CouplingCoefficient());
+			Signal1D sig = new Signal1D(s, 10);
+			sig.VisualSignal();
 			
-			//MessageBox.Show("Коэф. связи амплитудных спектров: "+ sig.CouplingCoefficientSp());
 			
-			sig.CorrelationMatrixSpectr().MatrixShow();
+			Vector si = ofdm.BuldOfdmSig(s);
+			si.Visual();
+			ofdm.OutSig(si).Visual();
 		}
 		
 		
